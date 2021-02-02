@@ -13,7 +13,7 @@
         </fieldset>
         <fieldset>
             <label for="quantity">Quantity: </label>
-            <input name="quantity" id="quantity" required type="number" />
+            <input name="quantity" id="quantity" required type="number" min="1" />
         </fieldset>
         <button>Save</button>
     </form>
