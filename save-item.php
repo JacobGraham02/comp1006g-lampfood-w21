@@ -10,6 +10,7 @@
 $name = $_POST['name'];
 $quantity = $_POST['quantity'];
 $categoryId = $_POST['categoryId'];
+$itemId = $_POST['itemId']; // hidden field; blank when adding, has value when editing
 $ok = true;
 
 // 1a. validate inputs before saving
@@ -54,10 +55,16 @@ else {
 
 if ($ok) {
     // 2. connect to db
-    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
+    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '');
 
-    // 3. set up an SQL INSERT command w/2 parameters that have : prefixes
-    $sql = "INSERT INTO items (name, quantity, categoryId) VALUES (:name, :quantity, :categoryId)";
+    // 3. set up an SQL command w/parameters that have : prefixes
+    if (empty($itemId)) {
+        $sql = "INSERT INTO items (name, quantity, categoryId) VALUES (:name, :quantity, :categoryId)";
+    }
+    else {
+        $sql = "UPDATE items SET name = :name, quantity = :quantity, categoryId = :categoryId 
+            WHERE itemId = :itemId";
+    }
 
     // 4. populate the INSERT with our variables using a Command variable to prevent SQL Injection
     $cmd = $db->prepare($sql);
@@ -65,14 +72,19 @@ if ($ok) {
     $cmd->bindParam(':quantity', $quantity, PDO::PARAM_INT);
     $cmd->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
 
-    // 5. execute the INSERT to save the data
+    // fill itemId param if editing existing record
+    if (!empty($itemId)) {
+        $cmd->bindParam(':itemId', $itemId, PDO::PARAM_INT);
+    }
+    // 5. execute the SQL command to save the data
     $cmd->execute();
 
     // 6. disconnect
     $db = null;
 
     // 7. show confirmation message to user
-    echo "<h1>Item Saved</h1>";
+    //echo "<h1>Item Saved</h1>";
+    header('location:items.php');
 }
 ?>
 </body>

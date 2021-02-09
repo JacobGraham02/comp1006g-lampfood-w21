@@ -12,7 +12,7 @@ if (is_numeric($_GET['itemId'])) {
     $itemId = $_GET['itemId'];
 
     // connect
-    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
+    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '');
 
     // set up & run the SQL DELETE command
     $sql = "DELETE FROM items WHERE itemId = :itemId";
