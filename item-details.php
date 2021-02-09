@@ -1,3 +1,27 @@
+<?php
+// initialize $item variable
+$item = null;
+/*$item['name'] = null;
+$item['quantity'] = null;
+$item['categoryId'] = null;*/
+
+// check if there's an itemId URL param. If so, fetch this item for edit; if not not, show blank
+if (!empty($_GET['itemId'])) {
+    if (is_numeric($_GET['itemId'])) {
+        $itemId = $_GET['itemId'];
+
+        // connect
+        $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'x');
+
+        // fetch selected item
+        $sql = "SELECT * FROM items WHERE itemId = :itemId";
+        $cmd = $db->prepare($sql);
+        $cmd->bindParam(':itemId', $itemId, PDO::PARAM_INT);
+        $cmd->execute();
+        $item = $cmd->fetch(); // use fetch for as single record
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +33,18 @@
     <form method="post" action="save-item.php">
         <fieldset>
             <label for="name">Name: </label>
-            <input name="name" id="name" required />
+            <input name="name" id="name" required value="<?php echo $item['name']; ?>" />
         </fieldset>
         <fieldset>
             <label for="quantity">Quantity: </label>
-            <input name="quantity" id="quantity" required type="number" min="1" />
+            <input name="quantity" id="quantity" required type="number" min="1" value="<?php echo $item['quantity']; ?>" />
         </fieldset>
         <fieldset>
             <label for="categoryId">Category: </label>
             <select name="categoryId" id="categoryId">
                 <?php
                 // connect
-                $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '');
+                $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'x');
 
                 // set up query to fetch categories
                 $sql = "SELECT * FROM categories ORDER BY name";
@@ -32,7 +56,13 @@
 
                 // loop through the results adding each category to the dropdown list
                 foreach ($categories as $c) {
-                    echo '<option value="' . $c['categoryId'] . '">' . $c['name'] . '</option>';
+                    // check if current category matches the item category when editing
+                    if ($item['categoryId'] == $c['categoryId']) {
+                        echo '<option selected value="' . $c['categoryId'] . '">' . $c['name'] . '</option>';
+                    }
+                    else {
+                        echo '<option value="' . $c['categoryId'] . '">' . $c['name'] . '</option>';
+                    }
                 }
                 ?>
             </select>

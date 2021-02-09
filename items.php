@@ -14,7 +14,7 @@
 // 1. Connect to the db.  Host: 172.31.22.43, DB: dbNameHere, Username: usernameHere, PW: passwordHere
 $user = 'Rich100';
 $database = 'Rich100';
-$passw = '';
+$passw = 'Vda787-KJ_';
 
 try {
     $db = new PDO("mysql:host=172.31.22.43;dbname=$database", $user, $passw);
@@ -40,9 +40,12 @@ echo '<table class="table table-striped table-light"><thead><th>Name</th><th>Qua
 foreach ($items as $indItems)
 {
     // must use "return" to evaluate the confirm method to decide if the link should fire or not
-    echo '<tr><td>' . $indItems['name'] . '</td>
+    echo '<tr><td><a href="item-details.php?itemId=' . $indItems['itemId'] .
+        '">' . $indItems['name'] . '</a></td>
         <td>' . $indItems['quantity'] . '</td>
-        <td><a href="delete-item.php?itemId=' . $indItems['itemId'] .
+        <td><a href="item-details.php?itemId=' . $indItems['itemId'] .
+            '" class="btn btn-secondary">Edit</a>&nbsp;
+            <a href="delete-item.php?itemId=' . $indItems['itemId'] .
             '" class="btn btn-danger" title="Delete"
             onclick="return confirmDelete();">Delete</a></td></tr>';
 }
