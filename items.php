@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Grocery List</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+    <!-- link to custom js file to use delete confirmation function -->
+    <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body>
 
@@ -32,12 +35,16 @@ $items = $cmd->fetchAll();
 
 // 5. Use a foreach loop to iterate (cycle) through all the values in the $items variable.  Inside this loop, use an echo command to display the name of each item.  See https://www.php.net/manual/en/control-structures.foreach.php for details.
 // start an HTML table for formatting BEFORE the foreach loop
-echo '<table class="table table-striped table-light"><thead><th>Name</th><th>Quantity</th></thead>';
+echo '<table class="table table-striped table-light"><thead><th>Name</th><th>Quantity</th><th>Actions</th></thead>';
 
 foreach ($items as $indItems)
 {
+    // must use "return" to evaluate the confirm method to decide if the link should fire or not
     echo '<tr><td>' . $indItems['name'] . '</td>
-        <td>' . $indItems['quantity'] . '</td></tr>';
+        <td>' . $indItems['quantity'] . '</td>
+        <td><a href="delete-item.php?itemId=' . $indItems['itemId'] .
+            '" class="btn btn-danger" title="Delete"
+            onclick="return confirmDelete();">Delete</a></td></tr>';
 }
 
 // close the table

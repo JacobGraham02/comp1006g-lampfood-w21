@@ -54,7 +54,7 @@ else {
 
 if ($ok) {
     // 2. connect to db
-    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '');
+    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
 
     // 3. set up an SQL INSERT command w/2 parameters that have : prefixes
     $sql = "INSERT INTO items (name, quantity, categoryId) VALUES (:name, :quantity, :categoryId)";
