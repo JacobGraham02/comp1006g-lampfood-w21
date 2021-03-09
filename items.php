@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Grocery List</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<?php $pageTitle = "Grocery List";
+include 'header.php'; ?>
 
-    <!-- link to custom js file to use delete confirmation function -->
-    <script type="text/javascript" src="js/scripts.js"></script>
-</head>
-<body>
 <h1>Grocery List</h1>
 <a href="item-details.php">Add an Item</a>
 <?php
 // 1. Connect to the db.  Host: 172.31.22.43, DB: dbNameHere, Username: usernameHere, PW: passwordHere
-$user = 'Rich100';
-$database = 'Rich100';
-$passw = 'Vda787-KJ_';
-
-try {
-    $db = new PDO("mysql:host=172.31.22.43;dbname=$database", $user, $passw);
-} catch (PDOException $e) {
-    echo "Error when connecting to database: " . $e->getMessage();
-    die();
-}
+include 'db.php';
 
 //  2. Write the SQL Query to read all the records from the artists table and store in a variable
 $sql = "SELECT items.*, categories.name AS category FROM items 
@@ -59,7 +42,6 @@ echo '</table>';
 // 6. Disconnect from the database
 $db = null;
 
+include 'footer.php';
 ?>
 
-</body>
-</html>

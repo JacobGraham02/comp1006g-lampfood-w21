@@ -11,7 +11,7 @@ if (!empty($_GET['itemId'])) {
         $itemId = $_GET['itemId'];
 
         // connect
-        $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
+        include 'db.php';
 
         // fetch selected item
         $sql = "SELECT * FROM items WHERE itemId = :itemId";
@@ -21,15 +21,11 @@ if (!empty($_GET['itemId'])) {
         $item = $cmd->fetch(); // use fetch for as single record
     }
 }
+
+$pageTitle = "Item Details";
+include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Item Details</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-</head>
-<body>
+
     <main class="container">
         <h1>Grocery Item</h1>
         <form method="post" action="save-item.php">
@@ -76,5 +72,5 @@ if (!empty($_GET['itemId'])) {
             <button class="offset-2 btn btn-primary">Save</button>
         </form>
     </main>
-</body>
-</html>
+
+<?php include 'footer.php'; ?>

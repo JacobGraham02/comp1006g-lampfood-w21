@@ -55,7 +55,7 @@ else {
 
 if ($ok) {
     // 2. connect to db
-    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
+    include 'db.php';
 
     // 3. set up an SQL command w/parameters that have : prefixes
     if (empty($itemId)) {

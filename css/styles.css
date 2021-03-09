@@ -1,0 +1,8 @@
+/* custom styles & bootstrap overrides */
+.primary, .bg-primary, .btn-primary {
+    background-color: #03A9F4;
+}
+
+.bg-dark {
+    background-color: #607D8B;
+}
