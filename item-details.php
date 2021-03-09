@@ -10,15 +10,20 @@ if (!empty($_GET['itemId'])) {
     if (is_numeric($_GET['itemId'])) {
         $itemId = $_GET['itemId'];
 
-        // connect
-        include 'db.php';
+        try {
+            // connect
+            include 'db.php';
 
-        // fetch selected item
-        $sql = "SELECT * FROM items WHERE itemId = :itemId";
-        $cmd = $db->prepare($sql);
-        $cmd->bindParam(':itemId', $itemId, PDO::PARAM_INT);
-        $cmd->execute();
-        $item = $cmd->fetch(); // use fetch for as single record
+            // fetch selected item
+            $sql = "SELECT * FROM items WHERE itemId = :itemId";
+            $cmd = $db->prepare($sql);
+            $cmd->bindParam(':itemId', $itemId, PDO::PARAM_INT);
+            $cmd->execute();
+            $item = $cmd->fetch(); // use fetch for as single record
+        }
+        catch (exception $e) {
+            header('location:error.php');
+        }
     }
 }
 

@@ -1,8 +1,8 @@
 /* custom styles & bootstrap overrides */
-.primary, .bg-primary, .btn-primary {
+.primary, .bg-primary, .btn-primary, .custom-primary {
     background-color: #03A9F4;
 }
 
-.bg-dark {
+.bg-dark, .bg-footer {
     background-color: #607D8B;
 }
