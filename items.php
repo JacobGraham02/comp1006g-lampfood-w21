@@ -15,7 +15,7 @@
 // 1. Connect to the db.  Host: 172.31.22.43, DB: dbNameHere, Username: usernameHere, PW: passwordHere
 $user = 'Rich100';
 $database = 'Rich100';
-$passw = '';
+$passw = 'Vda787-KJ_';
 
 try {
     $db = new PDO("mysql:host=172.31.22.43;dbname=$database", $user, $passw);

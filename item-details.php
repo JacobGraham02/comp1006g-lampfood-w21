@@ -11,7 +11,7 @@ if (!empty($_GET['itemId'])) {
         $itemId = $_GET['itemId'];
 
         // connect
-        $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '_');
+        $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
 
         // fetch selected item
         $sql = "SELECT * FROM items WHERE itemId = :itemId";
@@ -46,7 +46,7 @@ if (!empty($_GET['itemId'])) {
                 <select name="categoryId" id="categoryId">
                     <?php
                     // connect
-                    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', '');
+                    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
 
                     // set up query to fetch categories
                     $sql = "SELECT * FROM categories ORDER BY name";
