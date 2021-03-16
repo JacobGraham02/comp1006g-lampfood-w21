@@ -6,3 +6,7 @@
 .bg-dark, .bg-footer {
     background-color: #607D8B;
 }
+
+fieldset {
+    padding-bottom: 10px;
+}
