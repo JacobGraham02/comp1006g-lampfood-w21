@@ -6,6 +6,9 @@
 </head>
 <body>
 <?php
+// auth check
+include 'auth.php';
+
 // 1. store the form inputs in variables (optional but reduces syntax errors)
 $category = $_POST['category'];
 $ok = true;

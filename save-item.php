@@ -6,6 +6,9 @@
 </head>
 <body>
 <?php
+// auth check
+include 'auth.php';
+
 // 1. store the form inputs in variables (optional but reduces syntax errors)
 $name = $_POST['name'];
 $quantity = $_POST['quantity'];
@@ -89,7 +92,7 @@ if ($ok) {
 
     // 7. show confirmation message to user
     //echo "<h1>Item Saved</h1>";
-    header('location:items.php');
+    //header('location:items.php');
 }
 ?>
 </body>

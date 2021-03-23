@@ -1,4 +1,7 @@
 <?php
+// auth check
+include 'auth.php';
+
 // initialize $item variable
 $item = null;
 $item['name'] = null;
@@ -47,7 +50,7 @@ include 'header.php';
                 <select name="categoryId" id="categoryId">
                     <?php
                     // connect
-                    $db = new PDO('mysql:host=172.31.22.43;dbname=Rich100', 'Rich100', 'Vda787-KJ_');
+                    include 'db.php';
 
                     // set up query to fetch categories
                     $sql = "SELECT * FROM categories ORDER BY name";

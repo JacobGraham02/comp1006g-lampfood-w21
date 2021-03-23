@@ -7,6 +7,9 @@
 <body>
 
 <?php
+// auth check
+include 'auth.php';
+
 if (is_numeric($_GET['itemId'])) {
     // read the itemId from the URL parameter using the $_GET collection
     $itemId = $_GET['itemId'];
