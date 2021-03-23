@@ -1,4 +1,7 @@
 <?php
+$pageTitle = "Item Details";
+include 'header.php'; // header must go first as it calls session_start() which auth needs
+
 // auth check
 include 'auth.php';
 
@@ -30,8 +33,6 @@ if (!empty($_GET['itemId'])) {
     }
 }
 
-$pageTitle = "Item Details";
-include 'header.php';
 ?>
 
     <main class="container">

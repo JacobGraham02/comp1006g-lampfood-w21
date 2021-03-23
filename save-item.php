@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Saving your Item</title>
-</head>
-<body>
 <?php
+$pageTitle = "Saving...";
+include 'header.php';
+
 // auth check
 include 'auth.php';
 

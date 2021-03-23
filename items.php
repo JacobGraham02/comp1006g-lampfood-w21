@@ -3,7 +3,7 @@ include 'header.php'; ?>
 
 <h1>Grocery List</h1>
 <?php
-    session_start(); // only call once per page
+    // session_start called in header above; only call once per page
     if (!empty($_SESSION['username'])) {
         echo '<a href="item-details.php">Add an Item</a>';
     }

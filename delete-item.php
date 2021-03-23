@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Deleting item...</title>
-</head>
-<body>
-
 <?php
+$pageTitle = "Deleting...";
+include 'header.php';
+
 // auth check
 include 'auth.php';
 
