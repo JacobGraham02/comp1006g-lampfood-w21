@@ -26,7 +26,7 @@
                     <a class="nav-link" aria-current="page" href="items.php">Grocery List</a>
                 </li>
             </ul>
-            <ul class="navbar-nav m-md-auto">
+            <ul class="navbar-nav ms-auto">
                 <?php
                 session_start();
                 if (empty($_SESSION['username'])) {
