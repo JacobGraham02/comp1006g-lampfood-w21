@@ -10,6 +10,7 @@ $item = null;
 $item['name'] = null;
 $item['quantity'] = null;
 $item['categoryId'] = null;
+$item['itemId'] = null;
 
 // check if there's an itemId URL param. If so, fetch this item for edit; if not not, show blank
 if (!empty($_GET['itemId'])) {
@@ -37,16 +38,16 @@ if (!empty($_GET['itemId'])) {
 
     <main class="container">
         <h1>Grocery Item</h1>
-        <form method="post" action="save-item.php">
-            <fieldset>
+        <form method="post" action="save-item.php" enctype="multipart/form-data">
+            <fieldset class="form-group">
                 <label for="name" class="col-2">Name: </label>
                 <input name="name" id="name" required value="<?php echo $item['name']; ?>" />
             </fieldset>
-            <fieldset>
+            <fieldset class="form-group">
                 <label for="quantity" class="col-2">Quantity: </label>
                 <input name="quantity" id="quantity" required type="number" min="1" value="<?php echo $item['quantity']; ?>" />
             </fieldset>
-            <fieldset>
+            <fieldset class="form-group">
                 <label for="categoryId" class="col-2">Category: </label>
                 <select name="categoryId" id="categoryId">
                     <?php
@@ -76,6 +77,10 @@ if (!empty($_GET['itemId'])) {
                     $db = null;
                     ?>
                 </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="photo" class="col-2">Photo:</label>
+                <input type="file" name="photo" id="photo" accept=".jpg,.png,.jpeg" />
             </fieldset>
             <input type="hidden" name="itemId" id="itemId" value="<?php echo $item['itemId']; ?>" />
             <button class="offset-2 btn btn-primary">Save</button>

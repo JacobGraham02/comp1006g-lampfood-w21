@@ -20,6 +20,11 @@ echo "Tmp Name: $tmp_name<br />";
 $type = mime_content_type($tmp_name);
 echo "Type: $type<br />";
 
+// save a copy to the uploads folder.  overwrites existing file w/same name
+session_start();
+$name = session_id() . "-$name"; // prefix the file name w/the session Id
+move_uploaded_file($tmp_name, "uploads/$name");
+
 ?>
 
 </body>
