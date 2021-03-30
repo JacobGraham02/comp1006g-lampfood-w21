@@ -68,7 +68,7 @@ if (!empty($_FILES['photo']['name'])) {
     }
 }
 else {
-    $photo = null;
+    $photo = $_POST['currentPhoto']; // keep existing photo if nothing uploaded
 }
 
 if ($ok) {
@@ -82,7 +82,8 @@ if ($ok) {
             VALUES (:name, :quantity, :categoryId, :photo)";
         }
         else {
-            $sql = "UPDATE items SET name = :name, quantity = :quantity, categoryId = :categoryId 
+            $sql = "UPDATE items SET name = :name, quantity = :quantity, 
+                 categoryId = :categoryId, photo = :photo 
                 WHERE itemId = :itemId";
         }
 
@@ -109,7 +110,7 @@ if ($ok) {
 
     // 7. show confirmation message to user
     //echo "<h1>Item Saved</h1>";
-    //header('location:items.php');
+    header('location:items.php');
 }
 ?>
 </body>

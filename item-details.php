@@ -11,6 +11,7 @@ $item['name'] = null;
 $item['quantity'] = null;
 $item['categoryId'] = null;
 $item['itemId'] = null;
+$item['photo'] = null;
 
 // check if there's an itemId URL param. If so, fetch this item for edit; if not not, show blank
 if (!empty($_GET['itemId'])) {
@@ -83,7 +84,17 @@ if (!empty($_GET['itemId'])) {
                 <input type="file" name="photo" id="photo" accept=".jpg,.png,.jpeg" />
             </fieldset>
             <input type="hidden" name="itemId" id="itemId" value="<?php echo $item['itemId']; ?>" />
-            <button class="offset-2 btn btn-primary">Save</button>
+            <input type="hidden" name="currentPhoto" id="currentPhoto" value="<?php echo $item['photo']; ?>" />
+            <?php
+            // show current image if any
+            if (!empty($item['photo'])) {
+                echo '<img src="img/item-uploads/' . $item['photo'] . '"
+                 alt="Item Photo" class="thumbnail offset-2" />';
+            }
+            ?>
+            <div>
+                <button class="offset-2 btn btn-primary">Save</button>
+            </div>
         </form>
     </main>
 

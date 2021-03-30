@@ -10,3 +10,7 @@
 .form-group {
     padding-bottom: 10px;
 }
+
+.thumbnail {
+    width: 75px;
+}
