@@ -152,6 +152,6 @@ if (isset($_GET['categoryId'])) { // if there is url param called categoryId
 //    header('location:error.php');
 //}
 
-include 'footer.php';
+include 'footer-unfixed.php';
 ?>
 
