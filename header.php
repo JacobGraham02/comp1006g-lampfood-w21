@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Lamp Food || <?php echo $pageTitle; ?></title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
     <!-- link to custom js file to use delete confirmation function -->
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/scripts.js" defer></script>
 
     <!-- bootstrap js for css animations -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" defer></script>
+
+    <!-- table sorting from https://www.kryogenix.org/code/browser/sorttable/ -->
+    <script type="text/javascript" src="js/sorttable.js" defer></script>
 </head>
 <body>
 <!-- Bootstrap navbar from https://getbootstrap.com/docs/5.0/components/navbar/#nav -->
