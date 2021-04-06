@@ -10,9 +10,18 @@ if (!empty($_SESSION['username'])) {
 
 // check for search criteria
 $keyword = null;
+$categoryId = null;
 
 if (isset($_GET['keyword'])) { // if we have a keyword param value in url
     $keyword = $_GET['keyword'];
+}
+
+if (isset($_GET['categoryId'])) { // if there is url param called categoryId
+    if (is_numeric($_GET['categoryId'])) { // if this param is a #
+        if ($_GET['categoryId'] > 0) { // if this value is > 0
+            $categoryId = $_GET['categoryId'];
+        }
+    }
 }
 ?>
 
@@ -20,6 +29,7 @@ if (isset($_GET['keyword'])) { // if we have a keyword param value in url
     <form action="items.php">
         <input name="keyword" id="keyword" placeholder="Search Term" value="<?php echo $keyword; ?>" />
         <select name="categoryId" id="categoryId">
+            <option value="-1">-Select Category-</option>
             <?php
             // 1. Connect to the db.  Host: 172.31.22.43, DB: dbNameHere, Username: usernameHere, PW: passwordHere
             include 'db.php';
@@ -30,7 +40,12 @@ if (isset($_GET['keyword'])) { // if we have a keyword param value in url
             $categories = $cmd->fetchAll();
 
             foreach ($categories as $c) {
-                echo '<option value="' . $c['categoryId'] . '">' . $c['name'] . '</option>';
+                if ($c['categoryId'] == $categoryId) {
+                    echo '<option value="' . $c['categoryId'] . '" selected>' . $c['name'] . '</option>';
+                }
+                else {
+                    echo '<option value="' . $c['categoryId'] . '">' . $c['name'] . '</option>';
+                }
             }
             ?>
         </select>
@@ -40,7 +55,7 @@ if (isset($_GET['keyword'])) { // if we have a keyword param value in url
 </section>
 
 <?php
-try {
+//try {
 
     //  2. Write the SQL Query to read all the records from the artists table and store in a variable
     $sql = "SELECT items.*, categories.name AS category FROM items
@@ -48,6 +63,15 @@ try {
 
     if ($keyword != null) {
         $sql .= " WHERE items.name LIKE :keyword";
+
+        if ($categoryId != null) {
+            $sql .= " AND items.categoryId = :categoryId";
+        }
+    }
+    else {
+        if ($categoryId != null) {
+            $sql .= " WHERE items.categoryId = :categoryId";
+        }
     }
 
     // 3. Create a Command variable $cmd then use it to run the SQL Query
@@ -56,6 +80,10 @@ try {
     if ($keyword != null) {
         $keyword = '%' . $keyword . '%';
         $cmd->bindParam(':keyword', $keyword, PDO::PARAM_STR, 50);
+    }
+
+    if ($categoryId != null) {
+        $cmd->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
     }
 
     $cmd->execute();
@@ -117,12 +145,12 @@ try {
 
     // 6. Disconnect from the database
     $db = null;
-}
-catch (exception $e) {
+//}
+//catch (exception $e) {
     /* mail('me@email.com', 'Lamp Food Error', $e,
         'From:contact@lampfood.com'); */
-    header('location:error.php');
-}
+//    header('location:error.php');
+//}
 
 include 'footer.php';
 ?>
