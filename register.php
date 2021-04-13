@@ -28,17 +28,16 @@ include 'header.php';
         <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
     </form>
 </main>
-<!-- recaptcha script from Google -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN"></script>
+<!-- recaptcha -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LfSceYUAAAAAChF3SXuiFo6Jfh0Zev_VWd3mwYb"></script>
 <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN',
-                {action: 'submit'}).then(function (token) {
-                // Add your logic to submit to your backend server here.
-                var recaptchaResponse = document.getElementById('recaptchaResponse');
-                recaptchaResponse.value = token;
-            });
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfSceYUAAAAAChF3SXuiFo6Jfh0Zev_VWd3mwYb', {action: 'register'}).then(function(token) {
+            // add the recaptcha response to the new hidden field on the form so it gets submitted to the server
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
         });
+    });
 </script>
 <?php include 'footer.php'; ?>
 
