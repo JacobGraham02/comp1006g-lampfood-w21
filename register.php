@@ -25,9 +25,21 @@ include 'header.php';
         <div class="offset-3">
             <button class="btn btn-primary">Register</button>
         </div>
+        <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
     </form>
 </main>
-
+<!-- recaptcha script from Google -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN"></script>
+<script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN',
+                {action: 'submit'}).then(function (token) {
+                // Add your logic to submit to your backend server here.
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+</script>
 <?php include 'footer.php'; ?>
 
 
