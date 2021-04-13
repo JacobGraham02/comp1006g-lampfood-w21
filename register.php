@@ -29,10 +29,10 @@ include 'header.php';
     </form>
 </main>
 <!-- recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfSceYUAAAAAChF3SXuiFo6Jfh0Zev_VWd3mwYb"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN"></script>
 <script>
     grecaptcha.ready(function() {
-        grecaptcha.execute('6LfSceYUAAAAAChF3SXuiFo6Jfh0Zev_VWd3mwYb', {action: 'register'}).then(function(token) {
+        grecaptcha.execute('6LfWjqgaAAAAAFyCmnWXjJn9Dk-LtqaZX1fAI-DN', {action: 'register'}).then(function(token) {
             // add the recaptcha response to the new hidden field on the form so it gets submitted to the server
             var recaptchaResponse = document.getElementById('recaptchaResponse');
             recaptchaResponse.value = token;

@@ -26,15 +26,16 @@ if ($password != $confirm) {
 
 // recaptcha validation
 $apiUrl = 'https://www.google.com/recaptcha/api/siteverify'; // from api docs
-$secret = '6LfWjqgaAAAAABhz3RdbMyHjAsarcRjkGqXjAMcd'; // from google console
+$secret = 'secret-key-here'; // from google console
 $response = $_POST['recaptchaResponse']; // from hidden input on form
 
+//echo "Response: $response<br />";
 // call recaptcha api and parse the result to check the bot score
 $apiResponse = file_get_contents($apiUrl . "?secret=$secret&response=$response");
-$recaptchaResponse = json_decode($apiResponse, true);
-//echo $recaptchaResponse;
+$recaptchaResponse = json_decode($apiResponse);
+
 // check if api shows bot (0.0) or user (1.0)
-if ($recaptchaResponse[1] < 0.5) {
+if ($recaptchaResponse->score < 0.5) {
     echo 'Are you human?';
     $ok = false;
 }
